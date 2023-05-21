@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieManiaX</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <script src="src/common.js" defer></script>
+    <script src="src/fav.js" defer></script>
+    <script src="https://kit.fontawesome.com/c40ec95a77.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Begin of NavBar -->
+    <nav class="navbar-container">
+        <div class="sidebar">
+            <!-- Logo Section -->
+            <div class="brand-container">
+                <img src="./img/logo.png" class="logo">
+                <h4 class="brand-name">MovieManiaX</h4>
+            </div>
+
+            <!-- Nav Section -->
+            <div class="nav-container">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <span class="icon"><i class="fa-solid fa-house"></i></span>
+                            <span class="item">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <span class="icon"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                            <span class="item">Trending</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <span class="icon"><i class="fa-solid fa-play"></i></span>
+                            <span class="item">Trailers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="icon"><i class="fa-solid fa-heart"></i></span>
+                            <span class="item">Favorites</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <!-- End of NavBar -->
+
+
+    <!-- Start of Page Content -->
+    <main id="main" role="main">
+
+        <div class="fav-head-container">
+            <h1 class="fav-header">Favorites</h1>
+        </div>
+
+        <!-- Movie Cards Container-->
+        <div class="movie-cards-container fav-movie-container">
+            <template class="movie-card-template">
+                <div class="movie-card search-results" data-open-modal onclick="callModal(this)">
+                    <div class="movie-poster" id="movie-poster">
+                        <img id="movie-poster-img" src="https://m.media-amazon.com/images/M/MV5BYzJkZDIwYTAtMGU4Mi00NzU3LWI1MWItODg0M2Q1NmIxYmNlXkEyXkFqcGdeQXVyMTIyNzY0NTMx._V1_SX300.jpg" alt="Poster Image">
+                    </div>
+                    <div class="movie-info-container">
+                        <div class="movie-info-table">
+
+                            <!-- Stores the IMDB id -->
+                            <ul class="movie-info-row hide-imdb">
+                                <li>
+                                    <span class="imdb-id">
+                                        tt10811166
+                                    </span>
+                                </li>
+                            </ul>
+                            
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Movie Name : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val" id="movie-title">
+                                        The Kashmir Files
+                                    </span>
+                                </li>
+                            </ul>
+                
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        IMDB Rating : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val" id="movie-rating">
+                                        8.7 / 10
+                                    </span>
+                                </li>
+                            </ul>
+                
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Release Date :
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val" id="movie-release-date">
+                                        11 Mar 2022
+                                    </span>
+                                </li>
+                            </ul>
+                
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Language :
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val" id="movie-language">
+                                        Hindi
+                                    </span>
+                                </li>
+                            </ul>
+                
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Country : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val" id="movie-country">
+                                        India
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fav-btn-container">
+                        <div id="fav-btn"><i class="fa-solid fa-heart"></i></div>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <!-- <button data-open-modal>Open</button> -->
+
+        <dialog data-modal class = "modal" id="modal-dialog">
+            <div class="movie-detail-display">
+                <div class="movie-card">
+                    <div class="movie-poster" id="movie-poster">
+                        <img id="movie-poster-img" src="https://m.media-amazon.com/images/M/MV5BYzJkZDIwYTAtMGU4Mi00NzU3LWI1MWItODg0M2Q1NmIxYmNlXkEyXkFqcGdeQXVyMTIyNzY0NTMx._V1_SX300.jpg" alt="Poster Image">
+                    </div>
+                    <div class="movie-info-container">
+                        <div class="movie-info-table">
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Movie Name : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val">
+                                        The Kashmir Files
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Year : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val">
+                                        2022
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Released Date : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val">
+                                        11 Mar 2022
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        IMDB Rating : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val">
+                                        8.7 / 10
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Runtime: 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val">
+                                        170 min.
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Genere : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val">
+                                        Drama
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Director : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val">
+                                        Vivek Agnihotri
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Writers : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val">
+                                        Vivek Agnihotri, Saurabh M. Pandey
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Actors : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val">
+                                        Mithun Chakraborty, Anupam Kher, Darshan Kumaar
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <ul class="movie-info-row">
+                                <li>
+                                    <h4 class="movie-info-text">
+                                        Plot : 
+                                    </h4>
+                                </li>
+                                <!-- <br/> -->
+                                <li>
+                                    <span class="movie-info-val">
+                                        A heart-wrenching tale that captures the pain, suffering, and struggle of the Kashmiri Pandit community in 1990 and leads Krishna, a young college student, to set out on a quest to uncover the truth
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dialog-btn-container">
+                            <button id="dialog-btn" data-close-modal><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        </dialog>
+        
+        <!-- End of Movie Cards Container -->
+
+    </main>
+    <!-- End of Page Content -->
+
+</body>
+</html>
